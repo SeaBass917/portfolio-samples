@@ -1,0 +1,595 @@
+<!DOCTYPE html>
+
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <!--<base href="/">--><base href=".">
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+    <title>README</title>
+
+    <!--link rel="stylesheet" href="style/readme.css"-->
+
+    <!--script src="js/readme.js"></script-->
+
+    <style>
+        /*["#ffffff","#f1f1f1","#dedede","#c6c6c6","#a7a7a7","#878787","#686868","#474747","#222222","#000000"]*/
+
+        .todo{
+            color: red;
+        }
+
+        p {
+            margin: 0px;
+        }
+
+        body > h1{
+            margin: 10px 10px 0px;
+        }
+        body > h3{
+            margin: 0px 20px;
+        }
+
+        body > div{
+            margin: 8px 0px;
+            background-color: #f1f1f1;
+            padding: 5px;
+        }
+
+        body > div h2{
+            margin: 0px 0px 20px;
+            padding: 0px 5px;
+            display:inline-block;
+            border-bottom: 2px solid black;
+        }
+
+        #usageDiv tr>th{
+            padding: 0px 0px 6px 48px;
+            text-decoration: underline;
+
+        }
+        #usageDiv tr>:nth-child(1){
+            text-align: right;
+        }
+        #usageDiv tr>td:nth-child(2){
+            padding: 0px 0px 0px 48px;
+        }
+
+        #patternFormatDiv table, 
+        #patternFormatDiv th, 
+        #patternFormatDiv td {
+            border: 1px solid black;
+            text-align: center;
+        }
+
+        #edgeFormatDiv table, 
+        #edgeFormatDiv th, 
+        #edgeFormatDiv td {
+            border: 1px solid black;
+            text-align: center;
+        }
+
+        #patternFormatDiv tbody:nth-child(1) > :nth-child(1) > td{
+            border: 0px;
+        }
+        #patternFormatDiv tbody:nth-child(1) > :nth-child(1) > :nth-child(1) {
+            border: 1px solid black;
+        }
+
+        #patternFormatDiv tbody:nth-child(1) > :nth-child(2) > td{
+            border: 0px;
+        }
+        #patternFormatDiv tbody:nth-child(1) > :nth-child(2) > :nth-child(1) {
+            border: 1px solid black;
+        }
+        #patternFormatDiv tbody:nth-child(1) > :nth-child(2) > :nth-child(2) {
+            border: 1px solid black;
+        }
+        #patternFormatDiv tbody:nth-child(1) > :nth-child(2) > :nth-child(3) {
+            border: 1px solid black;
+        }
+        #patternFormatDiv tbody:nth-child(1) > :nth-child(2) > :nth-child(4) {
+            border: 1px solid black;
+        }
+        #patternFormatDiv tbody:nth-child(1) > :nth-child(2) > :nth-child(5) {
+            border: 1px solid black;
+        }
+    </style>
+
+</head>
+
+<body cz-shortcut-listen="true">
+    <h1>Synchronicity: <i>Pattern Authoring Tool</i></h1>
+    <h3>A General Guide</h3>
+
+    <div id="tableOfContentsDiv">
+        <h3>Table of Contents</h3>
+        <ul>
+            <li>
+                <a href="http://localhost:8080/readme.html#setupDiv">Setup</a>
+            </li>
+            <li>
+                <a href="http://localhost:8080/readme.html#overViewDiv">Overview of Interface</a>
+            </li>
+            <li>
+                <a href="http://localhost:8080/readme.html#usageDiv">Basic Usage of Tool</a>
+            </li>
+            <li>
+                <a href="http://localhost:8080/readme.html#roleDiv">Role Breakdown</a>
+            </li>
+            <li>
+                <a href="http://localhost:8080/readme.html#edgeCleanerDiv">Edge Cleaning</a>
+            </li>
+            <li>
+                <a href="http://localhost:8080/readme.html#patternFormatDiv">File Formatting</a>
+            </li>
+        </ul>
+    </div>
+
+    <div id="setupDiv">
+        <h2>Setup</h2>
+        
+        <p>
+            The tool is run on a local server using Node.JS. Once the repository is cloned, simple go to the directory and start the server.
+        </p>
+
+        <h3>Requirements</h3>
+        <ul>
+            <li>
+                git
+            </li>
+
+            <li>
+                OS: Linux/Mac OS 
+                <ul>
+                    <li>
+                        Tool was designed and used in unix envirmonment
+                    </li>
+
+                    <li>
+                        Tool has been shown to run on Windows if the file parsing code is changed to use windows line endings, but we cannot guarentee that that is the only issue.
+                    </li>
+
+                </ul>
+            </li>
+
+            <li>
+                Node.JS + Node Package Manager
+            </li>
+
+            <li>
+                (Optional) A multiscreen setup or large display is recommended for optimal performance
+            </li>
+
+        </ul>
+
+        <h3>Steps</h3>
+        <ol>
+            <li>
+                Clone the tool from <a href="https://github.com/cognitiveailab/Synchronicity" target="_blank">https://github.com/cognitiveailab/Synchronicity</a>.
+                <br>
+                <code>git clone https://github.com/cognitiveailab/Synchronicity.git</code>
+            </li>
+
+            <li>
+                Move to the tool/ directory.
+                <br>
+                <code>cd syncronicity/tool/</code>
+            </li>
+
+            <li>
+                Install Node dependancies 
+                <br>
+                <code>npm install</code>
+            </li>
+
+            <li>
+                Start the local server that hosts the tool
+                <br>
+                <code>node server.js</code>
+            </li>
+
+            <li>
+                Go to the address <a href="http://localhost:8080/patternGen.html" target="_blank">http://localhost:8080/patternGen.html</a> in your web browser.
+            </li>
+
+        </ol>
+    </div>
+
+    <div id="overViewDiv">
+        <h2>Overview</h2>
+        <br>
+
+        <h3><center>Full Tool</center></h3>
+        <img src="./figs/tool-screenshot-1a.png" alt="Tool Screenshot" width="100%">
+
+        <h3><center>Dashboard</center></h3>
+        <img src="./figs/dashboard-2.png" alt="Dashboard" width="100%">
+    </div>
+
+    <div id="usageDiv">
+        <h2>Usage</h2>
+        <br>
+
+        <h3>Main View</h3>
+        <ul>
+            <li>
+                Annotate the pattern
+            </li>
+
+            <li>
+                Pattern begins with initial seed rows
+            </li>
+
+            <li>
+                Query the explanations to discover more potential rows for this pattern, by refreshing with the refresh options
+                <ul>
+                    <li>
+                        Key based voting follows the order of the buttons + an 8th option to clear the role for that row.
+                    </li>
+
+                </ul>
+            </li>
+
+            <li>
+                Step through each row and vote by annotating a <a href="http://localhost:8080/readme.html#roleDiv">role</a> for that row in the patterns
+            </li>
+
+            <li>
+                Double-click on a row to add hint rows
+            </li>
+
+            <li>
+                Macros are present for the following operations
+                <table>
+                    <tbody><tr>
+                        <th>Operation</th>
+                        <th>Keybinding</th>
+                    </tr>
+                    <tr>
+                        <td><b>Voting by key</b></td>
+                        <td>Key based voting follows the order of the buttons + an 8th option to clear the role for that row</td>
+                    </tr>
+                    <tr>
+                        <td><b>Table Navigation</b></td>
+                        <td>Up and Down arrow keys will step through the rows of the table</td>
+                    </tr>
+                    <tr>
+                        <td><b>Refresh (Central)</b></td>
+                        <td>ctrl-r</td>
+                    </tr>
+                    <tr>
+                        <td><b>Refresh (Central+Grounding)</b></td>
+                        <td>ctrl-shift-r</td>
+                    </tr>
+                    <tr>
+                        <td><b>Marking Pattern</b></td>
+                        <td>f1-f5 will mark the pattern in the order of the buttons</td>
+                    </tr>
+                    <tr>
+                        <td><b>Pattern Navigation</b></td>
+                        <td>Left and Right arrow keys will progress forward and backwards through the patterns</td>
+                    </tr>
+                    <tr>
+                        <td><b>Rename</b></td>
+                        <td>ctrl-x</td>
+                    </tr>
+                    <tr>
+                        <td><b>Save</b></td>
+                        <td>ctrl-s</td>
+                    </tr>
+                    <tr>
+                        <td><b>Copy Pattern</b></td>
+                        <td>ctrl-c</td>
+                    </tr>
+                    <tr>
+                        <td><b>Add Row To Pattern</b></td>
+                        <td>ctrl-a</td>
+                    </tr>
+                    <tr>
+                        <td><b>Close Hint-Row Interface</b></td>
+                        <td>esc</td>
+                    </tr>
+                </tbody></table>
+            </li>
+
+        </ul>
+
+        <h3>Graph View</h3>
+        <ul>
+            <li>
+                Visualize the graph being formed by this pattern
+            </li>
+
+            <li>
+                Check to see if any facts are disconnected from the graph
+            </li>
+
+            <li>
+                NOTE: In practice, automatic graph population is not perfected so the graph seen is an approximation
+            </li>
+
+        </ul>
+
+        <h3>Questions View</h3>
+        <ul>
+            <li>
+                See what questions this pattern is overlapping with
+            </li>
+
+            <li>
+                Provides contexts to the annotator so that they can generalize the pattern
+            </li>
+
+        </ul>
+
+        <h3>Overlap View</h3>
+        <ul>
+            <li>
+                View other patterns that overlap with the current one
+            </li>
+
+            <li>
+                Verify that the pattern is not redundant
+            </li>
+
+        </ul>
+    </div>
+
+    <div id="roleDiv">
+        <h2>Role Breakdown</h2>
+        <br>
+        
+        <img src="./figs/role_breakdown.png" alt="Tool Screenshot" width="50%">
+    </div>
+
+    <div id="edgeCleanerDiv">
+        <h2>Edge Cleaner</h2>
+
+        <ul>
+            <li>
+                Since the edge populating algorithm is not perfected, a smaller tool was created to go through the edges manually.
+            </li>
+
+            <li>
+                Generally the edges to look out for are the ones that connect facts on words that are part of compund phrases (e.g. Kinetic Energy is not the same as Potential Energy).
+            </li>
+
+            <li>
+                <b>
+                    Before running the cleaning process the edges have to be generated and stored locally using a script in the /patterns/&lt;data_set&gt;/edge_tables/ folder "populateEdgeTables.py"
+                </b>
+                <ul>
+                    <li>
+                        run: <code>python populateEdgeTables.py</code>
+                    </li>
+
+                    <li>
+                        requires 'pandas' library
+                    </li>
+
+                </ul>
+            </li>
+
+            <li>
+                Found here: <a href="http://localhost:8080/edgeCleaner.html" target="_blank">edgeCleaner.html</a>
+            </li>
+
+        </ul>
+        <img src="./figs/edgeCleaner.png" alt="Edge Cleaner" width="100%">
+    </div>
+
+    <div id="patternFormatDiv">
+        <h2>Pattern File Format</h2>
+        
+        <p>
+            The tool requires initial pattern seeds to begin use.
+        </p>
+        <br>
+
+        <p>
+            To seed the tool; patterns must be initialized in the following tab-delimited format:
+        </p>
+        <p>
+            (Note that all columns after ROLE_count are managed by the tool, so they will be blank at the start)
+        </p>
+        <br>
+
+        <table>
+            <tbody><tr>
+                <td>Notes</td> <td> </td> <td> </td> <td> </td> <td> </td> <td> </td> <td> </td> <td> </td> <td> </td> <td> </td> <td> </td> <td> </td> <td> </td> <td> </td>
+            </tr>
+            <tr>
+                <td>isDone</td> <td>isGood</td> <td>isUncertain</td> <td>isBad</td> <td>isRedundant</td> <td> </td> <td> </td> <td> </td> <td> </td> <td> </td> <td> </td> <td> </td> <td> </td> <td> </td>
+            </tr>
+            <tr>
+                <td>RATING</td> <td>TABLE</td> <td>ROW</td> <td>UID</td> <td>BACKGROUND_count</td> <td>CENTRAL_count</td> <td>GROUNDING_count</td> <td>LEXGLUE_count</td> <td>ROLE_count</td> <td>lastCount</td> <td>hintRowUUIDs</td> <td>hintWords</td> <td>rowNotes</td> <td>OPTIONAL</td>
+            </tr>
+            <tr>
+                <td>...</td> <td>...</td> <td>...</td> <td>...</td> <td>...</td> <td>...</td> <td>...</td> <td>...</td> <td>...</td> <td>...</td> <td>...</td> <td>...</td> <td>...</td> <td>...</td>
+            </tr>
+            <tr>
+                <td>...</td> <td>...</td> <td>...</td> <td>...</td> <td>...</td> <td>...</td> <td>...</td> <td>...</td> <td>...</td> <td>...</td> <td>...</td> <td>...</td> <td>...</td> <td>...</td>
+            </tr>
+        </tbody></table>
+
+        <ul>
+            <li>
+                Notes Row
+                <ul>
+                    <li>
+                        <b>Notes: </b> Space reserved for annotator notes
+                    </li>
+                </ul>
+            </li>
+            <li>
+                Flag Row
+                <ul>
+                    <li>
+                        <b>isDone: </b> Pattern is complete
+                    </li>
+                    <li>
+                        <b>isGood: </b> Pattern is good, but not verified
+                    </li>
+                    <li>
+                        <b>isUncertain: </b> Annotator is unsure of the pattern quality
+                    </li>
+                    <li>
+                        <b>isBad: </b> Pattern is bad
+                    </li>
+                    <li>
+                        <b>isRedundant: </b> Pattern already exists in dataset
+                    </li>
+                </ul>
+            </li>
+            <li>
+                Header row
+                <ul>
+                    <li>
+                        <b>RATING: </b> Row ratings
+                    </li>
+                    <li>
+                        <b>TABLE: </b> Table each row is from
+                    </li>
+                    <li>
+                        <b>ROW: </b> Row text
+                    </li>
+                    <li>
+                        <b>UID: </b> Row UIDs
+                    </li>
+                    <li>
+                        <b>BACKGROUND_count: </b> Number of times each row was used in BACKGROUND role
+                    </li>
+                    <li>
+                        <b>CENTRAL_count: </b> Number of times each row was used in BACKGROUND role
+                    </li>
+                    <li>
+                        <b>GROUNDING_count: </b> Number of times each row was used in GROUNDING role
+                    </li>
+                    <li>
+                        <b>LEXGLUE_count: </b> Number of times each row was used in LEXGLUE role
+                    </li>
+                    <li>
+                        <b>ROLE_count: </b> Number of times each row was used in ROLE role
+                    </li>
+                    <li>
+                        <b>lastCount: </b> Number of times each row was used in other patterns
+                    </li>
+                    <li>
+                        <b>hintRowUUIDs: </b> Comma seperated list of uids that could replace each row
+                    </li>
+                    <li>
+                        <b>hintWords: </b> Comma seperated list of words that relate to each row
+                    </li>
+                    <li>
+                        <b>rowNotes: </b> Annotator notes for each row
+                    </li>
+                    <li>
+                        <b>OPTIONAL: </b> Flag to mark each row as optional
+                    </li>
+                </ul>
+            </li>
+        </ul>
+
+        <br>
+        <p>
+            Example Seed Pattern:
+        </p>
+        <br>
+
+        <table>
+            <tbody><tr>
+                <td>&nbsp;</td> <td> </td> <td> </td> <td> </td> <td> </td> <td> </td> <td> </td> <td> </td> <td> </td> <td> </td> <td> </td> <td> </td> <td> </td> <td> </td>
+            </tr>
+            <tr>
+                <td>false</td> <td>false</td> <td>false</td> <td>false</td> <td>false</td> <td> </td> <td> </td> <td> </td> <td> </td> <td> </td> <td> </td> <td> </td> <td> </td> <td> </td>
+            </tr>
+            <tr>
+                <td><b>RATING</b></td> <td><b>TABLE</b></td> <td><b>ROW</b></td> <td><b>UID</b></td> <td><b>BACKGROUND_count</b></td> <td><b>CENTRAL_count</b></td> <td><b>GROUNDING_count</b></td> <td><b>LEXGLUE_count</b></td> <td><b>ROLE_count</b></td> <td><b>lastCount</b></td> <td><b>hintRowUUIDs</b></td> <td><b>hintWords</b></td> <td><b>rowNotes</b></td> <td><b>OPTIONAL</b></td>
+            </tr>
+            <tr>
+                <td>UNRATED</td> <td>MADEOF</td> <td>blood is a vehicle for carrying oxygen from the lungs to the cells; rest of the body</td> <td>419c-cd03-a464-39af</td> <td>0</td> <td>0</td> <td>2</td> <td>0</td> <td>0</td> <td></td> <td></td> <td></td> <td></td> <td></td>
+            </tr>
+            <tr>
+                <td>UNRATED</td> <td>KINDOF</td> <td>oxygen is a kind of element</td> <td>936b-92a1-0e96-0846</td> <td>1</td> <td>0</td> <td>3</td> <td>0</td> <td>0</td> <td></td> <td></td> <td></td> <td></td> <td></td>
+            </tr>
+            <tr>
+                <td>UNRATED</td> <td>PROCESSROLES</td> <td>In the (cellular respiration; animal respiration) process carbon dioxide is a waste product</td> <td>3f31-824e-6866-4db7</td> <td>0</td> <td>0</td> <td>1</td> <td>0</td> <td>0</td> <td></td> <td></td> <td></td> <td></td> <td></td>
+            </tr>
+        </tbody></table>
+    </div>
+
+    <div id="edgeFormatDiv">
+        <h2>Edge Table File Format</h2>
+        
+        <p>
+            The edges for each pattern are generated semi-automatically, and stored in the edge_tables/ folder of the dataset. Generation is performed in two steps:
+            </p><ol>
+                <li>
+                    Automatically generating edges by running populateEdgeTables.py inside patterns/&lt;data_set&gt;/edge_tables/
+                </li>
+                <li>
+                    Cleaning up the edges with the <a href="http://localhost:8080/edgeCleaner.html" target="_blank">edgeCleaner</a>
+                </li>
+            </ol>
+        <p></p>
+        <br>
+
+        <p>
+            The edges tables are stored in patterns/&lt;data_set&gt;/edge_tables/*.tsv 
+            </p><ul>
+                <li>
+                    The table files are grids that show connections from each node to each other node
+                </li>
+                <li>
+                    Nodes are represented with the 16 character UID of their table row
+                </li>
+                <li>
+                    Each element of the table lists the constraints from one node to another in comma delimited format
+                    <ul>
+                        <li>
+                            Constraints are read from left to right, denoting where lexical overlap is required from one node to another; along with a flag for turning off/on the constraints
+                        </li>
+                        <li>
+                            (e.g. 2:3:Y defines lexical overlap from column 2 of node_0 to column 3 of node_1; and has been marked as a good connection)
+                        </li>
+                        <li>
+                            Elements of the table are read as FROM grid col -&gt; TO grid row | node_0 -&gt; node_1
+                        </li>
+                        <li>
+                            (Note: Edges are bidirectional, so they are only stored and read in one direction for simplicity)
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    The first element of the grid (i.e. position 0,0) is a flag for marking the pattern as checked though the edge cleaner 
+                </li>
+            </ul>
+        <p></p>
+
+        <table>
+            <tbody><tr>
+                <td>true</td> <td>31d9‑98d7‑6a10‑9053</td> <td>1cca‑1ac1‑5bea‑5cf6</td> <td>b356‑ece6‑5dc7‑8973</td> <td>27ac‑0696‑3449‑6bd2</td> <td>d1e5‑99a8‑b08b‑6e3d</td> <td>66df‑2200‑f730‑17c3</td> <td>0b7b‑cf23‑e64f‑4200</td>
+            </tr>
+            <tr>
+                <td>31d9‑98d7‑6a10‑9053</td> <td></td> <td></td> <td></td> <td></td> <td></td> <td></td> <td></td>
+            </tr>
+            <tr>
+                <td>1cca‑1ac1‑5bea‑5cf6</td> <td>2:2:Y,6:11:Y,9:2:Y,11:4:Y</td> <td></td> <td></td> <td></td> <td></td> <td></td> <td></td>
+            </tr>
+            <tr>
+                <td>b356‑ece6‑5dc7‑8973</td> <td>3:6:Y,9:2:N,9:16:N,10:20:Y,11:6:Y,11:21:Y</td> <td></td> <td></td> <td></td> <td></td> <td></td> <td></td>
+            </tr>
+            <tr>
+                <td>27ac‑0696‑3449‑6bd2</td> <td>11:10:Y</td> <td>9:2:N,10:6:Y</td> <td>6:10:Y</td> <td></td> <td></td> <td></td> <td></td>
+            </tr>
+            <tr>
+                <td>d1e5‑99a8‑b08b‑6e3d</td> <td>3:2:Y</td> <td></td> <td>6:2:Y</td> <td></td> <td></td> <td></td> <td></td>
+            </tr>
+            <tr>
+                <td>66df‑2200‑f730‑17c3</td> <td>3:2:Y,6:6:Y</td> <td>9:9:N,10:10:Y,11:6:Y</td> <td>6:2:Y</td> <td>2:9:Y,6:10:Y</td> <td>2:2:Y</td> <td></td> <td></td>
+            </tr>
+        </tbody></table>
+
+
+
+</div></body></html>
