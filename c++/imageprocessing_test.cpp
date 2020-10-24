@@ -23,10 +23,7 @@ void edgeDetection_test(std::string testDir, std::string testImg){
     edgeMapImage.write(pathEdgeMedian);
 }
 
-void cleanIAMDocument_test(std::string testDir){
-
-    // Test image
-    std::string testImg = "../data/IAM/documents/a02-000.png";
+void cleanIAMDocument_test(std::string testDir, std::string testImg){
 
     if(fs::exists(testImg)){
 
@@ -75,7 +72,7 @@ int main(int argc, char const *argv[]){
 
     std::string testDir1 = testDir+"cleanIAMDocument_test/";
     if(!fs::exists(testDir1)) fs::create_directory(testDir1);
-    cleanIAMDocument_test(testDir1);
+    cleanIAMDocument_test(testDir1, "document.png");
 
     std::string testDir2 = testDir+"erosion_test/";
     if(!fs::exists(testDir2)) fs::create_directory(testDir2);
