@@ -11,4 +11,8 @@ These examples include work from: courses, research, personal projects and spons
 Research papers written/co-authored by myself.
 
 ## Conference Presentations
-Presentations on my research given at academic conferences.
+Example of a presentation given in the COIN workshop at EMNLP.
+
+## User Facing Documentation
+Example of the documentation attached to the web-based annotation tool I designed.
+(Can either download and view in browser or I included a pdf printout of the page for online viewing).
